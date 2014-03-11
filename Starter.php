@@ -33,7 +33,7 @@ class Starter
         $process = new Process('phantomjs --webdriver=' . $this->port . ' --proxy-type=none --ignore-ssl-errors=true');
         $output = new GenericEvent();
         $process->setTimeout(null);
-        $process->start(function ($type, $buffer) use ($process, $output) {
+        $process->start(function () use ($process, $output) {
             $output->setArgument('output', $process->getIncrementalOutput());
         });
         $phantomjsOnline = false;
