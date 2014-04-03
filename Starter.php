@@ -15,7 +15,7 @@ class Starter
 {
     private $port = 8643;
 
-    public function _construct($port = null)
+    public function __construct($port = null)
     {
         if ($port) {
             $this->port = $port;
