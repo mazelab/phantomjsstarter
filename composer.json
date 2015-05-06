@@ -9,8 +9,12 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "jens.klose",
+            "name": "Jens Klose",
             "email": "jens.klose@googlemail.com"
+        },
+        {
+            "name": "Thomas Lauf",
+            "email": "thomas.lauf@tngtech.com"
         }
     ],
     "autoload": {
