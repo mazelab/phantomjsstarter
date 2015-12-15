@@ -20,7 +20,7 @@ class Starter
     public function __construct($port = null, $options = null)
     {
         !isset ($port) ?: $this->port = $port;
-        !isset ($options) ?: $this->options .= ' '.$options;
+        !isset ($options) ?: $this->options .= ' ' . $options;
     }
 
     /**
@@ -31,7 +31,7 @@ class Starter
     public function up()
     {
         $this->killAllRunning();
-        $process = new Process('phantomjs --webdriver=' . $this->port . ' '. $this->options);
+        $process = new Process('phantomjs --webdriver=' . $this->port . ' '  . $this->options);
         $output = new GenericEvent();
         $process->setTimeout(null);
         $process->start(function () use ($process, $output) {
@@ -58,7 +58,7 @@ class Starter
      */
     public function killAllRunning()
     {
-        exec("pgrep -f 'phantomjs.*".$this->port."' && pgrep -f 'phantomjs.*".$this->port."' | xargs kill");
+        exec("pkill -f 'phantomjs --webdriver=" . $this->port . " '");
     }
 
     public function __destruct()
