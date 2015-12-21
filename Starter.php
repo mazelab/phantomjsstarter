@@ -17,6 +17,8 @@ class Starter
 
     private $options = '--proxy-type=none --ignore-ssl-errors=true';
 
+    private $process;
+
     public function __construct($port = null, $options = null)
     {
         !isset ($port) ?: $this->port = $port;
@@ -31,7 +33,8 @@ class Starter
     public function up()
     {
         $this->killAllRunning();
-        $process = new Process('phantomjs --webdriver=' . $this->port . ' '  . $this->options);
+        $this->process = new Process('phantomjs --webdriver=' . $this->port . ' '  . $this->options);
+        $process = $this->process;
         $output = new GenericEvent();
         $process->setTimeout(null);
         $process->start(function () use ($process, $output) {
