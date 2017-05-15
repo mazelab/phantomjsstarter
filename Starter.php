@@ -17,12 +17,23 @@ class Starter
 
     private $options = '--proxy-type=none --ignore-ssl-errors=true';
 
+    /** @var string */
+    private $phantomjspath;
+
     private $process;
 
-    public function __construct($port = null, $options = null)
+    /**
+     * Starter constructor.
+     *
+     * @param int $port webdriver port number which is passed to the --webdriver option
+     * @param string $options other additional options. Defaults to '--proxy-type=none --ignore-ssl-errors=true'
+     * @param string $phantomjspath path to the phantomjs executable. Defaults to global 'phantomjs'
+     */
+    public function __construct($port = null, $options = null, $phantomjspath = 'phantomjs')
     {
         !isset ($port) ?: $this->port = $port;
         !isset ($options) ?: $this->options .= ' ' . $options;
+        $this->phantomjspath = $phantomjspath;
     }
 
     /**
@@ -33,7 +44,7 @@ class Starter
     public function up()
     {
         $this->killAllRunning();
-        $this->process = new Process('phantomjs --webdriver=' . $this->port . ' '  . $this->options);
+        $this->process = new Process($this->phantomjspath . ' --webdriver=' . $this->port . ' '  . $this->options);
         $process = $this->process;
         $output = new GenericEvent();
         $process->setTimeout(null);
@@ -51,7 +62,7 @@ class Starter
             }
             $phantomjsOnline = $process->isStarted() && $process->isRunning() && $portScan;
             if ($process->isTerminated()) {
-                throw new RuntimeException('Phantomjs could not been started with webdriver on port ' . $this->port);
+                throw new RuntimeException('Phantomjs could not be started with webdriver on port ' . $this->port);
             }
         }
     }
@@ -61,7 +72,7 @@ class Starter
      */
     public function killAllRunning()
     {
-        exec("pkill -f 'phantomjs --webdriver=" . $this->port . " '");
+        exec("pkill -f '" . $this->phantomjspath . " --webdriver=" . $this->port . " '");
     }
 
     public function __destruct()

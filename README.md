@@ -1,7 +1,7 @@
 phantomjsstarter
 ================
 
-Helper to start phantomjs sessions. We are using it in functional test frameworks like behat/mink.
+Helper to start phantomjs sessions. We use it in functional test frameworks like behat/mink.
 
 Installation
 ------------
