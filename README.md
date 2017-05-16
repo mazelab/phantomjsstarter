@@ -7,7 +7,7 @@ Installation
 ------------
 ```javascript
     "require": {
-        "mazelab/phantomjsstarter": "~1.0"
+        "mazelab/phantomjsstarter": "^1.0"
     }
 ```
 
