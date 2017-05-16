@@ -23,9 +23,9 @@ The phantomjsstarter is open-sourced software licensed under the [MIT license](h
 
 The _Starter_ constructor accepts the following parameters:
 
-`$port` - webdriver port number which is passed to the `--webdriver` option    
-`$options` - other additional options. Defaults to `--proxy-type=none --ignore-ssl-errors=true`
-`$phantomJsPath` - path to the phantomjs executable. Defaults to global `phantomjs`
+- `$port` - webdriver port number which is passed to the `--webdriver` option    
+- `$options` - other additional options. Defaults to `--proxy-type=none --ignore-ssl-errors=true`
+- `$phantomJsPath` - path to the phantomjs executable. Defaults to global `phantomjs`
 
 Example
 -------
