@@ -18,7 +18,7 @@ class Starter
     private $options = '--proxy-type=none --ignore-ssl-errors=true';
 
     /** @var string */
-    private $phantomjspath;
+    private $phantomJsPath;
 
     private $process;
 
@@ -27,13 +27,13 @@ class Starter
      *
      * @param int $port webdriver port number which is passed to the --webdriver option
      * @param string $options other additional options. Defaults to '--proxy-type=none --ignore-ssl-errors=true'
-     * @param string $phantomjspath path to the phantomjs executable. Defaults to global 'phantomjs'
+     * @param string $phantomJsPath path to the phantomjs executable. Defaults to global 'phantomjs'
      */
-    public function __construct($port = null, $options = null, $phantomjspath = 'phantomjs')
+    public function __construct($port = null, $options = null, $phantomJsPath = 'phantomjs')
     {
         !isset ($port) ?: $this->port = $port;
         !isset ($options) ?: $this->options .= ' ' . $options;
-        $this->phantomjspath = $phantomjspath;
+        $this->phantomJsPath = $phantomJsPath;
     }
 
     /**
@@ -44,7 +44,7 @@ class Starter
     public function up()
     {
         $this->killAllRunning();
-        $this->process = new Process($this->phantomjspath . ' --webdriver=' . $this->port . ' '  . $this->options);
+        $this->process = new Process($this->phantomJsPath . ' --webdriver=' . $this->port . ' '  . $this->options);
         $process = $this->process;
         $output = new GenericEvent();
         $process->setTimeout(null);
@@ -72,7 +72,7 @@ class Starter
      */
     public function killAllRunning()
     {
-        exec("pkill -f '" . $this->phantomjspath . " --webdriver=" . $this->port . " '");
+        exec("pkill -f '" . $this->phantomJsPath . " --webdriver=" . $this->port . " '");
     }
 
     public function __destruct()

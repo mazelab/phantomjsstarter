@@ -10,24 +10,42 @@ Installation
         "mazelab/phantomjsstarter": "~1.0"
     }
 ```
+
+API
+---
+The _Starter_ constructor accepts the following parameters:
+
+`$port` - webdriver port number which is passed to the `--webdriver` option    
+`$options` - other additional options. Defaults to `--proxy-type=none --ignore-ssl-errors=true`
+`$phantomJsPath` - path to the phantomjs executable. Defaults to global `phantomjs`
+
 Example
 -------
-features/bootstrap/FeatureContext.php 
+A _FeatureContext_ file could look like this
 
 ```php
     class FeatureContext extends MinkContext
     {
-
         /** @BeforeSuite */
         public static function setup(SuiteEvent $event)
         {
+            // this will set the port
             $phantomjs = new Mazelab\Phantomjs\Starter(8643);
             $phantomjs->up();
         }
-
+        
+        /** @BeforeSuite */
+        public static function setup2(SuiteEvent $event)
+        {
+            // this will set the port and tells the starter
+            // to use the binary from node_modules/.bin
+            $phantomjs = new Mazelab\Phantomjs\Starter(8643, null, 'node_modules/.bin/phantomjs');
+            $phantomjs->up();
+        }
         ...
 ```
-behat.yml
+And then your config file `behat.yml`
+
 ```yaml
     default:
         context:
@@ -43,3 +61,4 @@ behat.yml
                 base_url: 'https://dev.myproject.com'
                 selenium2:
                     wd_host: "http://localhost:8643/wd/hub"
+```
