@@ -1,18 +1,22 @@
 phantomjsstarter
 ================
 
-Helper to start phantomjs sessions. We use it in functional test frameworks like behat/mink.
+PHP helper class to start phantomjs sessions on demand. You could use it in functional test frameworks like behat/mink.
 
-Installation
-------------
+## License
+
+The phantomjsstarter is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+## Installation
+
 ```javascript
     "require": {
         "mazelab/phantomjsstarter": "^1.0"
     }
 ```
 
-API
----
+## API
+
 The _Starter_ constructor accepts the following parameters:
 
 `$port` - webdriver port number which is passed to the `--webdriver` option    
