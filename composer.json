@@ -3,8 +3,8 @@
     "type": "library",
     "description": "Starts phantomjs sessions with webdriver support",
     "require": {
-        "symfony/process": "~2.1",
-        "symfony/event-dispatcher": "~2.0"
+        "symfony/process": "^3.2",
+        "symfony/event-dispatcher": "^3.2"
     },
     "license": "MIT",
     "authors": [
