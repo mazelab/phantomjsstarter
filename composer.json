@@ -15,6 +15,10 @@
         {
             "name": "Thomas Lauf",
             "email": "thomas.lauf@tngtech.com"
+        },
+        {
+            "name": "Andrey Stukalin",
+            "email": "apstukalin@gmail.com"
         }
     ],
     "autoload": {
